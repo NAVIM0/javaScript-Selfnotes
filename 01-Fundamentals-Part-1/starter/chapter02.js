@@ -1,3 +1,5 @@
+// @flow
+
 //============================ primitive types(not objects) ================================
 //javascript primitive types:
 //
@@ -79,3 +81,29 @@ lines\n");
 console.log(`String
 with multiple
 lines!`)
+
+
+const age = 19;
+
+if (age >= 18) {
+
+    console.log(`
+Get a Driver's License!`);
+}
+
+
+
+
+
+//type conversion
+const inputVar = '1991'
+
+console.log(Number.parseInt(inputVar) + 18);
+
+
+
+//type coercion
+console.log(`\nI am ` + 23 + ` years old!`);
+console.log(`23` - `10` - 3);
+console.log("23" * "2");
+console.log("23" / 2);
