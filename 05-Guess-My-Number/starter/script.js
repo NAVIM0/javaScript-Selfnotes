@@ -1,19 +1,33 @@
 // @flow
-'use strict';
+"use strict";
 
-const numberElement = document.querySelector('.number');
-const guessElement = document.querySelector('.guess');
-const scoreElement = document.querySelector('.score');
-const messageElement = document.querySelector('.message');
-const highScoreElement = document.querySelector('.highscore');
-let secretNumber = Math.trunc(Math.random() * 20) + 1;
+
+//utility function to fix flow errors but honestly not worth it!
+function setTextContext(element: ?HTMLElement, text: string, elementName: string) {
+  if (element) {
+    element.textContent = text;
+  } else {
+    console.error(`${elementName} not found`);
+  }
+}
+
+
+const numberElement: ?HTMLElement = document.querySelector(".number");
+const guessElement: ?HTMLElement = document.querySelector(".guess");
+const scoreElement: ?HTMLElement = document.querySelector(".score");
+const messageElement: ?HTMLElement = document.querySelector(".message");
+const highScoreElement: ?HTMLElement = document.querySelector(".highscore");
+const checkElement: ?HTMLElement = document.querySelector(".check");
+const bodyElement: ?HTMLElement = document.querySelector(".body");
+const againElement: ?HTMLElement = document.querySelector(".again");
+
+let secretNumber: number = Math.trunc(Math.random() * 20) + 1;
 
 
 let score = 20;
 console.log(secretNumber);
 
-
-document.querySelector('.check').addEventListener('click', function() {
+checkElement.addEventListener("click", function() {
 
   const guess = Number(guessElement.value);
 
@@ -24,35 +38,35 @@ document.querySelector('.check').addEventListener('click', function() {
 
   if (guess === secretNumber) {
 
-    document.querySelector('body').style.backgroundColor = 'Green';
-    numberElement.style.width = '30rem';
-    numberElement.textContent = guess;
-    messageElement.textContent = 'Congrats! You Guessed it! 🎉';
+    bodyElement.style.backgroundColor = "Green";
+    numberElement.style.width = "30rem";
+    setTextContext(numberElement, String(guess), "numberElement");
+    setTextContext(messageElement, "Congrats! You Guessed it! 🎉", "messageElement");
     highScoreElement.textContent = Number(highScoreElement.textContent) > score ?
       highScoreElement.textContent : score;
 
   } else {
-    messageElement.textContent = guess > secretNumber ? '📉 Too High! Try Lower.' : '📈 Too Low! Try Higher.';
+    messageElement.textContent = guess > secretNumber ? "📉 Too High! Try Lower." : "📈 Too Low! Try Higher.";
     scoreElement.textContent = --score;
   }
 
   if (score <= 0) {
-    document.querySelector('body').style.backgroundColor = 'Red';
-    messageElement.textContent = '😤 You Lost The Game Moron! Tough Luck!';
+    bodyElement.style.backgroundColor = "Red";
+    messageElement.textContent = "😤 You Lost The Game Moron! Tough Luck!";
     scoreElement.textContent = 0;
   }
 
 });
 
 
-document.querySelector('.again').addEventListener('click', () => {
+againElement.addEventListener("click", () => {
 
   secretNumber = Math.trunc(Math.random() * 20) + 1;
   console.log(secretNumber);
-  document.querySelector('body').style.backgroundColor = '#222';
+  document.querySelector("body").style.backgroundColor = "#222";
   scoreElement.textContent = score = 20;
-  messageElement.textContent = 'Start guessing...';
-  numberElement.textContent = '?';
-  numberElement.style.width = '15rem';
-  guessElement.value = '';
+  messageElement.textContent = "Start guessing...";
+  numberElement.textContent = "?";
+  numberElement.style.width = "15rem";
+  guessElement.value = "";
 });
