@@ -1,6 +1,4 @@
-// @flow
-
-function calculateBMI (height : number, mass : number) :number { return mass / (height ** 2) }
+function calculateBMI (height, mass) { return mass / (height ** 2) }
 
 const markBMI = calculateBMI(1.69,78)
 const johnBMI = calculateBMI(1.95,92)
