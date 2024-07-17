@@ -18,7 +18,7 @@ const scoreElement: ?HTMLElement = document.querySelector(".score");
 const messageElement: ?HTMLElement = document.querySelector(".message");
 const highScoreElement: ?HTMLElement = document.querySelector(".highscore");
 const checkElement: ?HTMLElement = document.querySelector(".check");
-const bodyElement: ?HTMLElement = document.querySelector(".body");
+const bodyElement: ?HTMLElement = document.querySelector("body");
 const againElement: ?HTMLElement = document.querySelector(".again");
 
 let secretNumber: number = Math.trunc(Math.random() * 20) + 1;

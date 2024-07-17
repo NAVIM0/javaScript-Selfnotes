@@ -57,7 +57,7 @@ main {
 }
 
 .score {
-  font-size: 8rem;
+  font-size: 6rem;
   font-weight: 300;
   color: #c7365f;
   margin-bottom: auto;
@@ -164,4 +164,89 @@ main {
 .player--winner .name {
   font-weight: 700;
   color: #c7365f;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+
+  background-color: white;
+  padding: 6rem;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1.2rem;
+  right: 2rem;
+  font-size: 5rem;
+  color: #333;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  margin-left: 10rem;
+}
+
+p {
+  font-size: 1.8rem;
+}
+
+/* Button styles */
+.button-group button {
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin: 7px;
+  transition: background 0.3s ease;
+  width: 45%;
+}
+
+.confirm {
+  background-color: blue;
+  color: white;
+}
+
+.confirm:hover {
+  background-color: #45a049;
+}
+
+.cancel {
+  background-color: red;
+  color: white;
+}
+
+.cancel:hover {
+  background-color: #e53935;
+}
+.modal .button-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
