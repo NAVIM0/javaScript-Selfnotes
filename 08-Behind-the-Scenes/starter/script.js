@@ -60,7 +60,7 @@ function calcAge(birthYear : number) {
       var millennial = true;
 
 
-      //since a firstName is defined in this scope already there will be no variable look-up
+      //since a firstName is defined in this scope already, there will be no variable look-up
       //and it wil just use the one in this scope!!!
       const message = `inside the block scope the firstName is: ${firstName}`;
       console.log(message);
@@ -76,7 +76,7 @@ function calcAge(birthYear : number) {
     }
 
     //since the variable firstName isn't defined in this function scope, there will be a variable lookup
-    //that will result in using the global scope variable first name being used and hence the first name
+    //that will result in using the global scope variable first name being used, and hence the first name
     //will be "John"!
     console.log(`outside the block scope the firstName is: ${firstName}`);
 
@@ -163,7 +163,7 @@ const addArrow = (a: number,b: number) => a + b;
 //also notice that if the copied method is the borrowed by another object, the "this" keyword used inside
 //the borrowed function will belong to the object calling the function like this:
 
-//navid.calcAge = f
+//navid.calcAge = omid.func
 //navid.calcAge(); ==> the this keyword will refer to the navid object
 
 //also arrow function's this keyword belongs to the parent scope unlike a regular function
@@ -192,9 +192,9 @@ let navid = {
     //only works if it's an arrow function!
     let isYoung = () => {
       console.log(this);
-      if (this.birthYear < 30) {
+      if (this.birthYear < 2004) {
 
-        console.log("He is young!");
+        console.log("Message from the isYoung function in the navid Object");
       }
     };
     isYoung();
@@ -206,7 +206,7 @@ let omid : module = {
   birthYear: 1998,
 }
 
-//don't need the || because exact_by_default is on in .flowConfig
+//don't need the | | because exact_by_default is on in .flowConfig
 let omid2 : {|birthYear: number|} = {
   birthYear: 1998
 }
@@ -269,7 +269,7 @@ console.log(a,b);
 
 //COPY AN OBJECT -> won't work on a nested object...it's a shallow copy, not a deep clone!
 //{} was marked as a dictionary of string: number which is what our object literals are basically
-const navidCopy = Object.assign(({}: {[string]:mixed}),navid);
+const navidCopy = Object.assign(({}: {[string]:number|Function}),navid);
 
 navidCopy.birthYear = 2005;
 
