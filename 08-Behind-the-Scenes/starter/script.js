@@ -275,4 +275,3 @@ navidCopy.birthYear = 2005;
 
 console.log(navid.birthYear);
 console.log(navidCopy.birthYear);
-
