@@ -27,13 +27,13 @@ type restaurantObject = {
   orderPizza: (string, ...string[]) => void
 }
 
-const weekDays = ['sat','mon','tue','wed','thu','fri'];
+const weekDays = ['sat','sun','mon','tue','wed','day-6th','fri'];
 
 const openingHours : openingHoursObject = {
 
   //Enhanced Object Literals, You can now have computed property names instead of literally specified
   //previously only values could be computed and not the property names
-  [weekDays[4]]: {
+  [weekDays[3]]: {
     open: 12,
     close: 22
   },
@@ -362,5 +362,61 @@ console.log('\n--------------ENHANCED OBJECT LITERALS----------------');
 console.log(`check the openingHours and restaurant object literal declarations for this section!`);
 
 console.log('\n--------------OPTIONAL CHAINING (?.)----------------');
+//this basically checks if the value on the left exists
+// and is set to undefined if it doesn't, instead of throwing a runtime error!
+
+
+//instead of:
+
+// if (restaurant.openingHours && restaurant.openingHours.mon) {
+// console.log(restaurant.openingHours.mon.open);
+//}
+
+console.log(restaurant.openingHours?.mon?.open);
+
+console.log('\n------------------------------');
+
+//Example
+const days = ['sat','sun','mon','tue','wed','day-6th','fri'];
+
+//the For Of Loop used for Iterables!
+for (let day of days) {
+
+  //using Nullish coalescing operator
+  console.log(`On ${day}, We Open At ${restaurant.openingHours[day]?.open ?? "NaN"}`);
+
+}
+
+
+// Optional Chaining On Methods
+console.log(restaurant.order?.(0,1) ?? "Method Does Not Exist");
+
+// Optional Chaining On Arrays
+const users = [{name: 'John', email: 'john@example.com'}];
+console.log(users[0]?.name ?? "User Not Available");
+
+
+console.log('\n--------------Looping Over Objects----------------');
+
+for (let day of Object.keys(openingHours)) {
+
+  console.log(day);
+}
+
+const values = Object.values(openingHours);
+console.log(values);
+
+const entries = Object.entries(openingHours);
+
+
+//logging the entries by deconstructing them!
+for (let [key , {open, close}] of entries) {
+
+  console.log(`On ${key} we open at ${open} and close at ${close}`);
+}
+
+
+
+
 
 
