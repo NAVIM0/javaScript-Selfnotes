@@ -9,7 +9,7 @@ const flights =
 type openingHoursObject = {
   [string]: {
     open: number,
-      close: number
+    close: number
   }
 }
 
@@ -27,9 +27,9 @@ type restaurantObject = {
   orderPizza: (string, ...string[]) => void
 }
 
-const weekDays = ['sat','sun','mon','tue','wed','day-6th','fri'];
+const weekDays = ['sat', 'sun', 'mon', 'tue', 'wed', 'day-6th', 'fri'];
 
-const openingHours : openingHoursObject = {
+const openingHours: openingHoursObject = {
 
   //Enhanced Object Literals, You can now have computed property names instead of literally specified
   //previously only values could be computed and not the property names
@@ -41,7 +41,7 @@ const openingHours : openingHoursObject = {
     open: 11,
     close: 23
   },
-  [`day-${2+4}th`]: {
+  [`day-${2 + 4}th`]: {
     open: 0, // Open 24 hours
     close: 24
   }
@@ -67,7 +67,7 @@ const restaurant: restaurantObject = {
 
   //Enhanced Object Literals (Examples of previous way is the above function)
   //function using destructuring
-  orderDelivery ({ starterIndex, mainIndex, time, address }) {
+  orderDelivery({ starterIndex, mainIndex, time, address }) {
 
     console.log(`Order Received ${restaurant.starterMenu[starterIndex]} ,and ${restaurant.mainMenu[mainIndex]}
 will be delivered to ${address} at time: ${time}`);
@@ -377,23 +377,23 @@ console.log(restaurant.openingHours?.mon?.open);
 console.log('\n------------------------------');
 
 //Example
-const days = ['sat','sun','mon','tue','wed','day-6th','fri'];
+const days = ['sat', 'sun', 'mon', 'tue', 'wed', 'day-6th', 'fri'];
 
 //the For Of Loop used for Iterables!
 for (let day of days) {
 
   //using Nullish coalescing operator
-  console.log(`On ${day}, We Open At ${restaurant.openingHours[day]?.open ?? "NaN"}`);
+  console.log(`On ${day}, We Open At ${restaurant.openingHours[day]?.open ?? 'NaN'}`);
 
 }
 
 
 // Optional Chaining On Methods
-console.log(restaurant.order?.(0,1) ?? "Method Does Not Exist");
+console.log(restaurant.order?.(0, 1) ?? 'Method Does Not Exist');
 
 // Optional Chaining On Arrays
-const users = [{name: 'John', email: 'john@example.com'}];
-console.log(users[0]?.name ?? "User Not Available");
+const users = [{ name: 'John', email: 'john@example.com' }];
+console.log(users[0]?.name ?? 'User Not Available');
 
 
 console.log('\n--------------Looping Over Objects----------------');
@@ -410,13 +410,68 @@ const entries = Object.entries(openingHours);
 
 
 //logging the entries by deconstructing them!
-for (let [key , {open, close}] of entries) {
+for (let [key, { open, close }] of entries) {
 
   console.log(`On ${key} we open at ${open} and close at ${close}`);
 }
 
+console.log('\n--------------SETS----------------');
+
+//SET methods
+const ordersSet = new Set(['pasta', 'Pizza', 'Risotte', 'pasta', 'Pizza']);
+
+console.log(ordersSet);
+console.log(ordersSet.size);
+console.log(ordersSet.has('Pizza'));
+ordersSet.add('Garlic Bread');
+ordersSet.add('Garlic Bread');
+console.log(ordersSet);
+ordersSet.delete('Garlic Bread');
+console.log(ordersSet);
+
+for (let order of ordersSet) {
+  console.log(order);
+}
+
+ordersSet.clear();
+console.log(ordersSet);
 
 
+//practical examples
+const staff = ['waiter', 'chef', 'waiter', 'Manager', 'chef', 'waiter'];
 
+const staffUnique = new Set(staff);
 
+console.log(staffUnique);
 
+console.log('\n--------------MAPS----------------');
+
+const rest: Map<number, string> = new Map();
+
+rest
+  .set(1, 'Fiorenze, Italy')
+  .set(12, 'heck Yeah')
+  .set(3, 'don\'t use maps with multiple different key value types please!');
+
+console.log(rest);
+console.log(rest.get(1));
+
+//defining maps literally (array of arrays)
+
+let languages = new Map([
+  [1,'Java'],
+  [2,'C'],
+  [3,'python'],
+  [4,'JavaScript']
+]);
+
+//converting objects into maps
+let hoursOpeningMap = new Map(Object.entries(openingHours));
+
+console.log(hoursOpeningMap);
+console.log('\n------------------------------');
+
+//maps inherit iterable so they can be iterated over!
+for (let [key, value] of languages) {
+  value === 'Java' ? console.log(`The Best Language in The world is ${value}`) : console.log(`Also: frick ${value}`)
+}
