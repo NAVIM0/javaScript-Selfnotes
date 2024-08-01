@@ -37,8 +37,7 @@ let differential = 0;
 let gameMinutes = Array.from(gameEvents.keys());
 
 
-
-// i have no idea how to actually calculate the average time between events occurring during a span of time
+// I have no idea how to actually calculate the average time between events occurring during a span of time
 for (let i = 0; i < gameMinutes.length - 1; i++) {
 
   differential += (gameMinutes[i+1] - gameMinutes[i]);

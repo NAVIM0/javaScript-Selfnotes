@@ -459,10 +459,10 @@ console.log(rest.get(1));
 //defining maps literally (array of arrays)
 
 let languages = new Map([
-  [1,'Java'],
-  [2,'C'],
-  [3,'python'],
-  [4,'JavaScript']
+  [1, 'Java'],
+  [2, 'C'],
+  [3, 'python'],
+  [4, 'JavaScript']
 ]);
 
 //converting objects into maps
@@ -473,5 +473,64 @@ console.log('\n------------------------------');
 
 //maps inherit iterable so they can be iterated over!
 for (let [key, value] of languages) {
-  value === 'Java' ? console.log(`The Best Language in The world is ${value}`) : console.log(`Also: frick ${value}`)
+  value === 'Java' ? console.log(`The Best Language in The world is ${value}`) : console.log(`Also: frick ${value}`);
 }
+console.log('\n--------------STRINGS----------------');
+
+const airline = 'TAP Air Portugal';
+const plane = 'A230';
+
+//same as charAt method
+console.log(plane[0]);
+console.log(plane.charAt(0));
+
+console.log(airline.lastIndexOf('r'));
+
+console.log(airline.slice(airline.indexOf(' ') + 1, airline.length));
+console.log(plane.slice(0, -2));
+console.log(plane.slice(-2));
+
+//Note that all the String objects methods return the primitive type string instead of the object
+// when ever you call methods on a primitive JavaScript wraps the primitive into a string object!
+
+console.log('\n--------------LAST STRING PRACTICE----------------');
+//the reason behind my implementations RELATIVE complexity is keeping all the data in separate variables for later processing
+// instead of just doing all the processing inside a string literal like the instructor did
+flights.split('+').forEach((flight) => {
+
+  let [section0, section1, section2, section3] = flight.split(';');
+
+  if (section0.includes('Delayed')) {
+    section0 = section0
+      .trim()
+      .toLowerCase()
+      .replaceAll(/_\w/gm, (match) => match.replace('_', ' ').toUpperCase()).replace(/^./gm, '🔴 ');
+
+  } else {
+    section0 = section0
+      .trim()
+      .toLowerCase()
+      .replaceAll(/_\w/gm, (match) => match.replace('_', '').toUpperCase());
+  }
+
+  let cityProcessing = (city: string) =>
+    city
+      .trim()
+      .toUpperCase()
+      .replace(/(\d+)/gm, '');
+
+
+  section1 = cityProcessing(section1);
+  section2 = cityProcessing(section2);
+
+  section3 = section3
+    .trim()
+    .replace(':', 'h');
+
+
+  console.log(`${section0} from ${section1} to ${section2} (${section3})`.padStart(30));
+});
+
+
+
+
