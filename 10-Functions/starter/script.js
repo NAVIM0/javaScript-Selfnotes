@@ -21,7 +21,7 @@ function bookingConstructor(flightNum: string, numPassengers: number = 1, price:
   console.log(booking);
   bookings.push(booking);
 }
-
+ 
 
 bookingConstructor('LH123');
 
@@ -265,7 +265,7 @@ console.log(addTax(0.1,200));
 //could be anything instead of null
 const addVAT = addTax.bind(null,0.23);
 
-//a partial Application of the addTax function
+//A Partial Application of the addTax function
 console.log(addVAT(200));
 
 //basically the .bind() method is the same as the custom function we made that returns
@@ -273,4 +273,89 @@ console.log(addVAT(200));
 const addVAT1 = addTaxHigherOrder(0.23);
 
 console.log(addVAT1(200));
+
+console.log('\n---------------------------immediately invoked function expression-------------------------------');
+
+// IIFE (A Pattern used for encapsulation)
+(function () {
+  console.log("this will never happen again!\n");
+})();
+
+
+(() => console.log("this will also never happen again!\n"))();
+
+console.log('\n-------------------------------------CLOSURES-----------------------------------------');
+
+//to review, please watch the video on this subject
+function secureBooking() {
+  let passengerCount = 0;
+
+  return function() {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  }
+}
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+
+// this also a case of closure apparently even when the variable f was defined outside the
+// g function's execution context
+let f : Function = undefined;
+
+function g() {
+  let a = 23;
+
+  //counts as function definition, I guess
+  f = function() {
+    console.log(a * 2);
+  }
+}
+
+
+function h() {
+  const b = 777;
+
+  //also counts as function definition
+  f = function() {
+    console.log(b * 2);
+  }
+}
+
+
+g();
+f();
+
+// re-assigning f function
+h();
+f();
+
+
+
+
+// example 2
+function boardPassengers(n : number , wait: number) {
+
+  const perGroup = Math.trunc(n / 3);
+
+  //the arrow callback function's Execution context variable environment closure is the boardPassengers function's VE
+  setTimeout(() => {
+    console.log(`we are now boarding all ${n} passengers`);
+    console.log(`there are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+
+
+  console.log(`will start boarding in ${wait} seconds`);
+}
+
+//notice the priority of the closure's VE over the Global scope/ the scope where the arrow function is called
+const perGroup = 1000;
+
+boardPassengers(100,3);
+
 
