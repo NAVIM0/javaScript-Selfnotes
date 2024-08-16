@@ -36,6 +36,8 @@ const account1 = {
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
+  username: '',
+  balance: 0
 };
 
 const account2 = {
@@ -43,6 +45,8 @@ const account2 = {
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
+  username: '',
+  balance: 0,
 
   movementsDates: [
     '2019-11-01T13:15:33.035Z',
