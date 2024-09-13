@@ -84,7 +84,7 @@ function calcAge(birthYear : number) {
     /*
     VERY IMPORTANT INFORMATION:
 
-      Code like the above example (Two FirstName Variables in one scope) won't be excepted in
+      Code like the above example (Two FirstName Variables in one scope) won't be accepted in
       other languages such as java...since two variables with the same name Can't exist in a single scope!
 
      */
